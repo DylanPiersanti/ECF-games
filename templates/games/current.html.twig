@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    ECF Games - {{ currentGame.name }}
+{% endblock %}
+
+{% block metadata %}
+    <meta name="description" content="{{ currentGame.description }}" />
+{% endblock metadata %}
+
+{% block stylesheet %}{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+    <div class="currentPage container">
+        <div class="row mt-5">
+            <div class=" col-12">
+                <div class=" card mb-3" style="width: 100%">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 px-3 py-3">
+                            <img src="{{ currentGame.cover }}" class="card-img" alt="couverture : {{ currentGame.name }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title">{{ currentGame.name }}</h2>
+                                <p class="card-text">{{ currentGame.description }}</p>
+                                <p class="card-text">Sortie : <b>{{ currentGame.date|date('d/m/Y')}}</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        {% if currentGame.review %}
+                            <p class="review btn btn-success mt-3">{{ currentGame.review }}/20</p>
+                        {% else %}
+                            <p class="review btn btn-success mt-3">Note inconnue</p>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="infoTable col-12">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Editeur(s) / Développeur(s)</td>
+                            <td></td>
+                            <td>
+                            {% if currentGame.editor.id == 0 %}
+                                <b>Inconnu</b>
+                            {% else %}
+                                <b>{{ currentGame.editor.name }}</b>
+                            {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sortie</td>
+                            <td></td>
+                            <td>
+                                {% if currentGame.date %}
+                                    <b>{{ currentGame.date|date('d/m/Y') }}</b>
+                                {% else %}
+                                    <b>Inconue</b>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Classification</td>
+                            <td></td>
+                            <td><b>+{{ currentGame.classification }} ans</b></td>
+                        </tr>
+                        <tr>
+                            <td>Jeuxvideo.com</td>
+                            <td></td>
+                            <td><a href="{{ currentGame.link }}">En savoir plus</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

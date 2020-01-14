@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ECF Games - Liste des jeux{% endblock %}
+
+{% block metadata %}
+    <meta name="description" content="Liste des jeux sur ECF Games !" />
+{% endblock metadata %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="container">
+    <div class="row mt-5">
+    <h1 class="ml-2 mb-2">Liste des jeux vidéos</h1>
+    {% for game in gamesList %}
+        <div class="col-12" >
+            <div class="card mb-3" style="width: 100%">
+                <div class="row no-gutters">
+                    <div class="col-md-4 px-3 py-3">
+                        <img src="{{ game.cover }}" class="card-img" alt="couverture : {{ game.name }}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2 class="card-title"><a href="{{ path('game', { id: game.id }) }}">{{ game.name }}</a></h2>
+                            <p class="card-text">{{ game.description }}</p>
+                            {% if game.date %}
+                                <p class="card-text">Sortie : <b>{{ game.date|date('d/m/Y')}}</b></p>
+                            {% else %}
+                                <p class="card-text">Sortie : <b>Inconue</b></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    {% if game.review %}
+                        <p class="review btn btn-success mt-3">{{ game.review }}/20</p>
+                    {% else %}
+                        <p class="review btn btn-success mt-3">Note inconnue</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    
+    </div>
+    <div class="row">
+        <div class="paginate">
+            <div class="test">
+                {{ knp_pagination_render(gamesList) }}
+            </div>
+        </div>
+    </div>  
+    
+</div>
+
+
+{% endblock %}

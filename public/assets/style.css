@@ -1,0 +1,31 @@
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.review {
+    font-size: 25px;
+}
+
+.currentPage {
+    min-height: 500px;
+}
+
+.infoTable {
+    margin-bottom: 200px;
+}
+
+.paginate {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-item:first-of-type,
+.page-item:last-of-type {
+    display: none;
+}
